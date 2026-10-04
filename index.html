@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tes Excel Kelas X</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d2540;--sheet:#17a673;--sheet2:#d9f5e8;--sun:#ffc43d;--coral:#ff6b5e;--sky:#4cc3f0;--paper:#f6fbf8;--line:#cfe0d7}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Baloo 2',system-ui,sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;overflow-x:hidden;font-size:17px}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg i{position:absolute;display:block;opacity:.35;animation:drift 14s ease-in-out infinite alternate}
+.bg i:nth-child(1){width:90px;height:90px;border-radius:50%;background:var(--sun);left:-20px;top:12%}
+.bg i:nth-child(2){width:60px;height:60px;border-radius:14px;background:var(--sky);right:6%;top:30%;animation-delay:-4s}
+.bg i:nth-child(3){width:110px;height:110px;border-radius:50%;background:var(--coral);right:-30px;bottom:12%;animation-delay:-8s}
+.bg i:nth-child(4){width:50px;height:50px;border-radius:12px;background:var(--sheet);left:8%;bottom:8%;animation-delay:-2s}
+@keyframes drift{to{transform:translate(18px,-26px) rotate(18deg)}}
+main{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:16px 14px 110px}
+h1{font-size:30px;line-height:1.1;margin:8px 0}
+.card{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:16px;box-shadow:4px 4px 0 var(--ink);margin-bottom:14px}
+label{display:block;font-weight:700;margin:12px 0 4px}
+input,select{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--ink);border-radius:12px;background:#fff;color:var(--ink)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--sheet);color:#fff;border:2px solid var(--ink);border-radius:14px;padding:10px 20px;font-weight:800;box-shadow:3px 3px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff;color:var(--ink)}
+.btn[disabled]{opacity:.45}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.hide{display:none!important}
+.err{color:#c0392b;font-weight:700;min-height:1.3em}
+.mascot{width:54px;height:54px;background:var(--sheet);border:2px solid var(--ink);border-radius:14px;position:relative;flex:none;animation:bob 2.4s ease-in-out infinite}
+.mascot:before,.mascot:after{content:"";position:absolute;top:18px;width:9px;height:12px;background:#fff;border:2px solid var(--ink);border-radius:50%;animation:blink 4s infinite}
+.mascot:before{left:10px}.mascot:after{right:10px}
+.mascot b{position:absolute;left:17px;bottom:9px;width:16px;height:7px;border-bottom:3px solid var(--ink);border-radius:0 0 12px 12px}
+.mascot.hop{animation:hop .45s}
+@keyframes bob{50%{transform:translateY(-5px)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+@keyframes hop{40%{transform:translateY(-14px) rotate(-8deg)}}
+.top{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.top div{flex:1}
+.bar{height:12px;border:2px solid var(--ink);border-radius:8px;background:#fff;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--sun);transition:width .4s}
+.dots{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:10px 0 14px}
+.dots button{padding:4px 0;border:2px solid var(--ink);border-radius:10px;background:#fff;font-weight:700;color:var(--ink)}
+.dots .ok{background:var(--sheet);color:#fff}.dots .bp{background:var(--sun)}
+.dots .cur{outline:3px solid var(--sky);outline-offset:1px}
+.q{font-size:18px;line-height:1.4;margin:6px 0 12px}
+.xlw{overflow-x:auto;border:2px solid var(--ink);border-radius:10px;margin:8px 0 14px;background:#fff}
+table.xl{border-collapse:collapse;min-width:100%;font-size:15px;font-family:Calibri,Arial,sans-serif}
+.xl th,.xl td{border:1px solid #b8c4be;padding:4px 10px;white-space:nowrap;text-align:left}
+.xl th{background:#e6ece9;font-weight:400;text-align:center;color:#444}
+.xl tbody th{position:sticky;left:0;width:34px}
+.xl .hd td{background:var(--sheet2);font-weight:700}
+.opt{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:10px 12px;margin-bottom:9px;color:var(--ink);line-height:1.3}
+.opt em{flex:none;width:30px;height:30px;border-radius:50%;background:var(--sheet2);border:2px solid var(--ink);display:grid;place-items:center;font-style:normal;font-weight:800}
+.opt.sel{background:var(--sheet2);box-shadow:3px 3px 0 var(--ink)}
+.opt.sel em{background:var(--sheet);color:#fff}
+.opt.bp{border-style:dashed}.opt.bp.sel{background:#fff1c9}.opt.bp.sel em{background:var(--sun);color:var(--ink)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+#calcBtn{position:fixed;right:14px;bottom:14px;z-index:5;width:56px;height:56px;border-radius:50%;background:var(--coral);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-size:24px;color:#fff;font-weight:800}
+#calc{position:fixed;right:14px;bottom:80px;z-index:5;width:230px;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:10px;box-shadow:4px 4px 0 var(--ink)}
+#cd{background:var(--ink);color:#fff;border-radius:10px;padding:8px 10px;text-align:right;font-size:24px;margin-bottom:8px;overflow:hidden}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.keys button{padding:8px 0;font-size:20px;border:2px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink);font-weight:700}
+.keys .op{background:var(--sun)}.keys .eq{background:var(--sheet);color:#fff}
+.modal{position:fixed;inset:0;background:rgba(29,37,64,.55);z-index:9;display:grid;place-items:center;padding:20px}
+.modal .card{max-width:380px;margin:0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg"><i></i><i></i><i></i><i></i></div>
+<main>
+
+<section id="s-start">
+  <div class="top"><div class="mascot"><b></b></div><h1>Tes Excel Kelas X</h1></div>
+  <div class="card">
+    <p>Ada 15 soal pilihan ganda tentang rumus Excel. Ini bukan nilai rapor, jadi kerjakan sendiri dan sebisamu.</p>
+    <p>Kalau memang belum paham, pilih <b>Belum paham soal ini</b>. Tapi coba pikirkan dulu ya. Kamu boleh melewati soal dan kembali lagi nanti, dan kalkulator ada di tombol bulat di pojok kanan bawah.</p>
+    <label for="nama">Nama</label><input id="nama" autocomplete="off">
+    <label for="kelas">Kelas</label><select id="kelas"><option value="">Pilih kelas</option></select>
+    <label for="absen">Nomor absen</label><input id="absen" type="number" inputmode="numeric" min="1" max="60">
+    <div class="err" id="e1"></div>
+    <button class="btn" id="go">Mulai</button>
+  </div>
+</section>
+
+<section id="s-quiz" class="hide">
+  <div class="top"><div class="mascot" id="mas"><b></b></div>
+    <div><b id="pg">Soal 1 dari 15</b><div class="bar"><span id="pb"></span></div></div></div>
+  <div class="dots" id="dots"></div>
+  <div class="card">
+    <div class="q" id="qt"></div>
+    <div id="tb"></div>
+    <div id="opts"></div>
+    <div class="nav"><button class="btn alt" id="prev">Sebelumnya</button><button class="btn" id="next">Berikutnya</button></div>
+  </div>
+</section>
+
+<section id="s-done" class="hide">
+  <div class="top"><div class="mascot"><b></b></div><h1>Terima kasih!</h1></div>
+  <div class="card"><p>Jawabanmu sudah terkirim. Kamu boleh menutup halaman ini.</p></div>
+</section>
+</main>
+
+<button id="calcBtn" class="hide" aria-label="Kalkulator">=</button>
+<div id="calc" class="hide">
+  <div id="cd">0</div>
+  <div class="keys" id="keys"></div>
+</div>
+<div id="modal" class="modal hide"><div class="card"><p id="mt"></p><div class="nav"><button class="btn alt" id="mb">Kembali</button><button class="btn" id="mk">Kirim</button></div><div class="err" id="me"></div></div></div>
+
+<script>
+// ===== PENGATURAN =====
+const SCRIPT_URL = https://script.google.com/macros/s/AKfycbzVUHO4uk9P8cHGYcTPaIU8bcXvZNmI8S7Mx9kcWW3m-Nme610TAQW0LVtbz8lLtytC/exec
+;
+const KELAS = ["X E1","X E2","X E3","X E4","X E5","X E7","X E8","X E9"];
+// Pretest: index.html  |  Posttest: index.html?tes=post
+const TES = new URLSearchParams(location.search).get("tes") === "post" ? "post" : "pre";
+// ======================
+
+const TBL = `<div class="xlw"><table class="xl"><thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody>
+<tr class="hd"><th>1</th><td>Nama</td><td>Uang Saku (Rp)</td><td>Durasi HP (jam)</td><td>Ukuran Sepatu</td></tr>
+<tr><th>2</th><td>A</td><td>15.000</td><td>6</td><td>40</td></tr>
+<tr><th>3</th><td>B</td><td>20.000</td><td>3</td><td>39</td></tr>
+<tr><th>4</th><td>C</td><td>10.000</td><td>8</td><td>41</td></tr>
+<tr><th>5</th><td>D</td><td>25.000</td><td>4</td><td>40</td></tr>
+<tr><th>6</th><td>E</td><td>15.000</td><td>7</td><td>38</td></tr></tbody></table></div>`;
+
+const Q = [
+ {t:`Perhatikan tabel data di bawah. Rumus yang tepat untuk menghitung rata-rata uang saku siswa adalah...`,tb:1,o:[`=AVERAGE(B2:B6)`,`=SUM(B2:B6)`,`=COUNT(B2:B6)`,`=MAX(B2:B6)`]},
+ {t:`Berdasarkan tabel data di bawah, hasil dari rumus =AVERAGE(C2:C6) (rata-rata durasi HP) adalah...`,tb:1,o:[`5`,`5,6`,`6`,`28`]},
+ {t:`Fungsi AVERAGE pada aplikasi pengolah angka digunakan untuk...`,o:[`Menjumlahkan seluruh data dalam suatu rentang sel`,`Menghitung rata-rata dari sekumpulan data`,`Menghitung banyaknya data dalam suatu rentang sel`,`Mencari nilai tertinggi dari sekumpulan data`]},
+ {t:`Berdasarkan tabel data di bawah, hasil dari rumus =MAX(D2:D6) (ukuran sepatu) adalah...`,tb:1,o:[`38`,`39`,`40`,`41`]},
+ {t:`Berdasarkan tabel data di bawah, hasil dari rumus =MIN(B2:B6) (uang saku) adalah...`,tb:1,o:[`Rp10.000`,`Rp15.000`,`Rp20.000`,`Rp25.000`]},
+ {t:`Untuk mencari nilai terendah dari sekumpulan data pada aplikasi pengolah angka, rumus yang digunakan adalah...`,o:[`=MAX()`,`=MIN()`,`=AVERAGE()`,`=COUNT()`]},
+ {t:`Berdasarkan tabel data di bawah, hasil dari rumus =COUNTIF(C2:C6,">5") (durasi HP lebih dari 5 jam) adalah...`,tb:1,o:[`1`,`2`,`3`,`4`]},
+ {t:`Rumus yang tepat untuk menghitung jumlah siswa dengan ukuran sepatu 40 pada tabel di bawah adalah...`,tb:1,o:[`=COUNTIF(D2:D6,40)`,`=SUM(D2:D6,40)`,`=AVERAGE(D2:D6,40)`,`=IF(D2:D6,40)`]},
+ {t:`Fungsi COUNTIF pada aplikasi pengolah angka digunakan untuk...`,o:[`Menghitung jumlah seluruh data tanpa syarat`,`Menghitung jumlah data yang memenuhi satu kriteria tertentu`,`Menghitung rata-rata data yang memenuhi satu kriteria tertentu`,`Menjumlahkan nilai dari beberapa sel`]},
+ {t:`Rumus yang tepat untuk menghitung jumlah siswa dengan uang saku ≥ Rp15.000 DAN durasi HP ≥ 5 jam adalah...`,tb:1,o:[`=COUNTIF(B2:B6,">=15000")`,`=COUNTIFS(B2:B6,">=15000",C2:C6,">=5")`,`=SUMIFS(B2:B6,">=15000")`,`=IF(B2:B6,">=15000")`]},
+ {t:`Berdasarkan tabel data di bawah, hasil dari rumus pada soal nomor 10 adalah...`,tb:1,o:[`1`,`2`,`3`,`4`]},
+ {t:`Perbedaan utama antara fungsi COUNTIF dan COUNTIFS adalah...`,o:[`COUNTIF hanya untuk angka, COUNTIFS hanya untuk teks`,`COUNTIF menghitung berdasarkan satu kriteria, COUNTIFS bisa lebih dari satu kriteria`,`COUNTIF dan COUNTIFS memiliki fungsi yang sama persis`,`COUNTIFS hanya bisa digunakan pada satu kolom data`]},
+ {t:`Rumus =IF(C2>5,"Aktif","Kurang Aktif") diterapkan pada data siswa C (durasi HP 8 jam) akan menghasilkan kategori...`,tb:1,o:[`Aktif`,`Kurang Aktif`,`Error`,`8`]},
+ {t:`Rumus =IF(B5>20000,"Boros","Hemat") diterapkan pada data siswa D (uang saku Rp25.000) akan menghasilkan kategori...`,tb:1,o:[`Boros`,`Hemat`,`Error`,`25000`]},
+ {t:`Pada struktur rumus =IF(kondisi, nilai_jika_benar, nilai_jika_salah), bagian "nilai_jika_benar" akan ditampilkan apabila...`,o:[`Kondisi yang diuji bernilai salah`,`Kondisi yang diuji bernilai benar`,`Data yang diuji kosong`,`Rumus mengalami error`]}
+];
+const N = Q.length, L = ["A","B","C","D"], KEY = "pretest_" + TES;
+const $ = id => document.getElementById(id);
+let S = {id:null, a:Array(N).fill(""), t:Array(N).fill(0), cur:0}, t0 = Date.now(), sending = false;
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function flush(){ const n = Date.now(); S.t[S.cur] += n - t0; t0 = n; }
+function show(id){ ["s-start","s-quiz","s-done"].forEach(s => $(s).classList.toggle("hide", s !== id)); $("calcBtn").classList.toggle("hide", id !== "s-quiz"); if(id !== "s-quiz") $("calc").classList.add("hide"); scrollTo(0,0); }
+
+KELAS.forEach(k => $("kelas").add(new Option(k, k)));
+
+$("go").onclick = () => {
+  const nama = $("nama").value.trim(), kelas = $("kelas").value, absen = parseInt($("absen").value, 10);
+  if(!nama || !kelas || !(absen > 0)){ $("e1").textContent = "Isi nama, kelas, dan nomor absen dulu ya."; return; }
+  S = {id:{nama, kelas, absen}, a:Array(N).fill(""), t:Array(N).fill(0), cur:0}; t0 = Date.now(); save(); show("s-quiz"); render();
+};
+
+function render(){
+  const q = Q[S.cur], a = S.a[S.cur];
+  $("pg").textContent = "Soal " + (S.cur + 1) + " dari " + N;
+  $("pb").style.width = (S.a.filter(Boolean).length / N * 100) + "%";
+  $("qt").textContent = (S.cur + 1) + ". " + q.t;
+  $("tb").innerHTML = q.tb ? TBL : "";
+  $("opts").innerHTML = q.o.map((x, i) => `<button class="opt${a === L[i] ? " sel" : ""}" data-v="${L[i]}"><em>${L[i]}</em><span></span></button>`).join("")
+    + `<button class="opt bp${a === "BP" ? " sel" : ""}" data-v="BP"><em>?</em><span>Belum paham soal ini</span></button>`;
+  [...$("opts").querySelectorAll(".opt:not(.bp) span")].forEach((s, i) => s.textContent = q.o[i]);
+  $("dots").innerHTML = Q.map((_, i) => `<button class="${S.a[i] === "BP" ? "bp" : S.a[i] ? "ok" : ""}${i === S.cur ? " cur" : ""}" data-i="${i}" aria-label="Soal ${i + 1}">${i + 1}</button>`).join("");
+  $("prev").disabled = S.cur === 0;
+  $("next").textContent = S.cur === N - 1 ? "Selesai" : "Berikutnya";
+}
+function go(i){ flush(); S.cur = i; save(); render(); scrollTo(0,0); }
+
+$("opts").onclick = e => {
+  const b = e.target.closest(".opt"); if(!b) return;
+  S.a[S.cur] = b.dataset.v; save(); render();
+  const m = $("mas"); m.classList.remove("hop"); void m.offsetWidth; m.classList.add("hop"); // reaksi sama untuk semua jawaban
+};
+$("dots").onclick = e => { const b = e.target.closest("button"); if(b) go(+b.dataset.i); };
+$("prev").onclick = () => go(S.cur - 1);
+$("next").onclick = () => S.cur < N - 1 ? go(S.cur + 1) : confirmSend();
+
+function confirmSend(){
+  flush();
+  const kosong = S.a.map((v, i) => v ? 0 : i + 1).filter(Boolean);
+  $("mt").textContent = kosong.length ? "Soal nomor " + kosong.join(", ") + " belum dijawab. Kirim sekarang?" : "Semua soal sudah terisi. Kirim jawaban sekarang?";
+  $("mb").textContent = "Kembali"; $("mk").textContent = "Kirim"; $("me").textContent = ""; $("modal").classList.remove("hide"); t0 = Date.now();
+}
+$("mb").onclick = () => $("modal").classList.add("hide");
+$("mk").onclick = async () => {
+  if(sending) return; sending = true; flush(); $("mk").disabled = true; $("me").textContent = "Mengirim...";
+  const p = {status:TES, nama:S.id.nama, kelas:S.id.kelas, absen:S.id.absen, jawaban:S.a, waktu:S.t.map(ms => Math.round(ms / 1000))};
+  try{
+    const r = await fetch(SCRIPT_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(p)});
+    const j = await r.json(); if(!j.ok) throw 0;
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    $("modal").classList.add("hide"); show("s-done");
+  }catch(e){
+    $("me").textContent = "Belum terkirim. Jawabanmu aman di perangkat ini. Cek sinyal lalu tekan Kirim lagi.";
+    $("mk").textContent = "Kirim lagi";
+  }
+  sending = false; $("mk").disabled = false; t0 = Date.now();
+};
+
+document.addEventListener("visibilitychange", () => { if(!S.id || $("s-quiz").classList.contains("hide")) return; if(document.hidden){ flush(); save(); } else t0 = Date.now(); });
+
+// ===== Kalkulator polos =====
+let cd = "0", cp = null, co = null, fresh = true;
+const num = s => parseFloat(String(s).replace(",", "."));
+const fmt = n => isFinite(n) ? String(Math.round(n * 1e8) / 1e8).replace(".", ",") : "Error";
+const ev = (a, o, b) => o === "+" ? a + b : o === "-" ? a - b : o === "*" ? a * b : b === 0 ? NaN : a / b;
+"7 8 9 / 4 5 6 * 1 2 3 - C 0 , + =".split(" ").forEach(k => {
+  const b = document.createElement("button");
+  b.textContent = ({"/":"÷","*":"×","-":"−"})[k] || k;
+  if("+-*/".includes(k)) b.className = "op"; if(k === "=") b.className = "eq";
+  b.onclick = () => {
+    if(k === "C"){ cd = "0"; cp = co = null; fresh = true; }
+    else if("+-*/".includes(k)){ cp = (co && !fresh) ? ev(cp, co, num(cd)) : num(cd); co = k; fresh = true; cd = fmt(cp); }
+    else if(k === "="){ if(co){ cp = ev(cp, co, num(cd)); cd = fmt(cp); co = null; fresh = true; } }
+    else if(fresh){ cd = k === "," ? "0," : k; fresh = false; }
+    else if(k === ","){ if(!cd.includes(",")) cd += ","; }
+    else cd = cd === "0" ? k : cd + k;
+    $("cd").textContent = cd;
+  };
+  $("keys").appendChild(b);
+});
+$("calcBtn").onclick = () => $("calc").classList.toggle("hide");
+
+// ===== Pulihkan jawaban jika halaman tertutup =====
+try{
+  const r = JSON.parse(localStorage.getItem(KEY) || "null");
+  if(r && r.id && r.a && r.a.length === N){ S = r; t0 = Date.now(); show("s-quiz"); render(); }
+}catch(e){}
+</script>
+</body>
+</html>
